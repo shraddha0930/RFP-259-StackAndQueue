@@ -4,13 +4,22 @@ import static java.lang.System.exit;
 
 public class MyStackAndQueue {
      Node top;
+     Node front, end;
 
      // Constructor
-     MyStackAndQueue() {
-         this.top = null;
-     }
 
-     public void push(int x){ // insert at the beginning
+
+    public MyStackAndQueue(Node top, Node front, Node end) {
+        this.top = top;
+        this.front = null;
+        this.end = null;
+    }
+
+    public MyStackAndQueue() {
+
+    }
+
+   /* public void push(int x){ // insert at the beginning
          // create new node temp and allocate memory
          Node temp = new Node();
          // check if stack (heap) is full. Then inserting an element would lead to stack overflow
@@ -37,7 +46,7 @@ public class MyStackAndQueue {
                 // print node data
                 System.out.print(temp.data);
 
-                // assign temp link to temp
+                // assign temp
                 temp = temp.link;
                 if (temp != null)
                     System.out.print(" -> ");
@@ -65,12 +74,29 @@ public class MyStackAndQueue {
         }
         // update the top pointer to point to the next node
         top = (top).link;
+    }*/
+
+    // Method to add a key to the queue.
+    void enqueue(int data) {
+
+        // Create a new LL node
+        Node temp = new Node(data);
+
+        // If queue is empty, then new node is front and end both
+        if (this.end == null) {
+            this.front = this.end = temp;
+            return;
+        }
+
+        // Add the new node at the end of queue and change last
+        this.end.link = temp;
+        this.end = temp;
     }
      public static void main(String[] args) {
         System.out.println("Welcome to stack and queue ");
          // create Object of Implementing class
          MyStackAndQueue obj = new MyStackAndQueue();
-         // insert Stack value
+         /* insert Stack value
          obj.push(70);
          obj.push(30);
          obj.push(56);
@@ -91,8 +117,13 @@ public class MyStackAndQueue {
 
          // print Top element of Stack
          System.out.printf("\nTop element is %d\n",
-                 obj.peek());
+                 obj.peek());*/
 
+         obj.enqueue(70);
+         obj.enqueue(30);
+         obj.enqueue(56);
+         System.out.println("Queue Front : " + obj.front.data);
+         System.out.println("Queue End : " + obj.end.data);
      }
 
 
